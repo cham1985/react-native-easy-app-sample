@@ -14,9 +14,17 @@ import NetInfo from '@react-native-community/netinfo';
  */
 export default class HttpConfig {
   static initDemo() {
-    XHttpConfig()
-      .initHttpLogOn(true)
-      .initNetworkExceptionFunc(NetInfo, (msg, code) => true)
+    XHttpConfig() //创建默认的 HTTP配置实例,全局可通过 HttpConfig[serverTag] 找到这个实例
+      .initHttpLogOn(true) //是否打印http请求log
+      .initNetworkExceptionFunc(NetInfo, (msg, code) => {
+        console.log(
+          'HttpConfig.js networkExceptionFunc msg=',
+          msg,
+          ' code=',
+          code,
+        );
+        return true;
+      })
       // .initBaseUrl('https://www.baidu.com')
       .initParseDataFunc((result, request, callback) => {
         let {success, json, message, status, response} = result;
