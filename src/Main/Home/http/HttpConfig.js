@@ -15,7 +15,7 @@ import NetInfo from '@react-native-community/netinfo';
 export default class HttpConfig {
   static initDemo() {
     XHttpConfig() //创建默认的 HTTP配置实例,全局可通过 HttpConfig[serverTag] 找到这个实例
-      .initHttpLogOn(true) //是否打印http请求log
+      .initHttpLogOn(false) //是否打印http请求log
       .initNetworkExceptionFunc(NetInfo, (msg, code) => {
         console.log(
           'HttpConfig.js networkExceptionFunc msg=',
@@ -27,6 +27,9 @@ export default class HttpConfig {
       })
       // .initBaseUrl('https://www.baidu.com')
       .initParseDataFunc((result, request, callback) => {
+        console.log('HttpConfig.js initParseDataFunc result=', result);
+        console.log('HttpConfig.js initParseDataFunc request=', request);
+
         let {success, json, message, status, response} = result;
         DebugManager.appendHttpLogs(request.params, response);
         if (status === 503) {

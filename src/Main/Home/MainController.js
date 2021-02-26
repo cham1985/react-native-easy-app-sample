@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Alert, BackHandler} from 'react-native';
+import {Alert, BackHandler, View} from 'react-native';
 import {NavigationBar} from '../Common/widgets/WidgetNavigation';
 import {RNItem} from '../Common/widgets/WidgetDefault';
 import HttpConfig from './http/HttpConfig';
@@ -28,7 +28,12 @@ export default class MainController extends PureComponent {
           clickRText={() => DebugManager.showFloat(Manager)}
           hideBack
         />
-        <RNItem text="Http请求" onPress={() => navigation.push('Http')} />
+        <RNItem
+          style={{backgroundColor: 'red', height: 10}}
+          text="Http请求"
+          onPress={() => navigation.push('Http')}
+        />
+        <View style={{width: '100%', height: 50, backgroundColor: 'blue'}} />
         <RNItem text="数据存储" onPress={() => navigation.push('Storage')} />
         <RNItem text="基础控件" onPress={() => navigation.push('Widget')} />
         <RNItem
